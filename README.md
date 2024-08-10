@@ -2,8 +2,6 @@
 
 GuitarShop es una aplicación de carrito de compras para guitarras, desarrollada con **React** y **Vite**. Permite a los usuarios explorar diferentes guitarras, agregarlas a su carrito de compras y proceder a la compra.
 
-![GuitarShop Screenshot](assets/screenshot.png)
-
 ## 🌐 Ver en Vivo
 
 Puedes ver la aplicación desplegada en [Netlify](https://guitarshop.netlify.app). Asegúrate de reemplazar este enlace con la URL real de tu aplicación.

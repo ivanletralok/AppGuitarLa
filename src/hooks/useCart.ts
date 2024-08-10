@@ -57,16 +57,12 @@ export const useCart = () => {
       if (item.id === id) {
         if (item.quantity && item.quantity > 4 && operationType) return;
         if (!operationType && item.quantity === 1) return;
-        return {
-          ...item,
-          quantity: operationType
-            ? item.quantity
-              ? item.quantity + 1
-              : 1
-            : item.quantity
-              ? item.quantity - 1
-              : 0,
-        };
+        if (item.quantity) {
+          return {
+            ...item,
+            quantity: operationType ? item.quantity++ : item.quantity--,
+          };
+        }
       }
       return item;
     });

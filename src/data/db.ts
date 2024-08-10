@@ -1,4 +1,6 @@
-export const db = [
+import { GuitarLa } from "../interface/guitarla.js";
+
+export const db: GuitarLa[] = [
   {
     id: 1,
     name: "Lukather",

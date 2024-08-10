@@ -1,4 +1,12 @@
-import PropTypes from "prop-types";
+import { GuitarLa } from "../interface/guitarla";
+
+interface headerProperties {
+  cart: GuitarLa[];
+  removeCart: (id: number) => void;
+  changeQuantity: (id: number, operation: string) => void;
+  setCart: React.Dispatch<React.SetStateAction<GuitarLa[]>>;
+  totalPay: number;
+}
 
 export default function Header({
   cart,
@@ -6,7 +14,7 @@ export default function Header({
   changeQuantity,
   setCart,
   totalPay,
-}) {
+}: headerProperties) {
   return (
     <header className="py-5 header">
       <div className="container-xl">
@@ -105,15 +113,3 @@ export default function Header({
     </header>
   );
 }
-
-Header.propTypes = {
-  cart: PropTypes.array,
-  removeCart: PropTypes.func,
-  name: PropTypes.string,
-  image: PropTypes.string,
-  price: PropTypes.number,
-  quantity: PropTypes.number,
-  changeQuantity: PropTypes.func,
-  setCart: PropTypes.func,
-  totalPay: PropTypes.number,
-};

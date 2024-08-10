@@ -28,12 +28,7 @@ export default function App() {
 
         <div className="row mt-5">
           {data.map((item) => (
-            <GuitarLA
-              key={item.id}
-              guitar={item}
-              setCart={setCart}
-              addToCart={addToCart}
-            />
+            <GuitarLA key={item.id} guitar={item} addToCart={addToCart} />
           ))}
         </div>
       </main>

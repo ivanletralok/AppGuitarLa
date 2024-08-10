@@ -1,6 +1,11 @@
-import PropTypes from "prop-types";
+import { GuitarLa } from "../interface/guitarla";
 
-export default function GuitarLA({ guitar, addToCart }) {
+interface GuitarProps {
+  guitar: GuitarLa;
+  addToCart: (item: GuitarLa) => void;
+}
+
+export default function GuitarLA({ guitar, addToCart }: GuitarProps) {
   const { name, image, description, price } = guitar;
 
   return (
@@ -27,14 +32,3 @@ export default function GuitarLA({ guitar, addToCart }) {
     </div>
   );
 }
-
-GuitarLA.propTypes = {
-  guitar: PropTypes.shape({
-    id: PropTypes.number.isRequired,
-    image: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
-    description: PropTypes.string.isRequired,
-    price: PropTypes.number.isRequired,
-  }).isRequired,
-  addToCart: PropTypes.func.isRequired,
-};

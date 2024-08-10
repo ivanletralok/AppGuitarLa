@@ -1,55 +1,17 @@
-import { useState, useEffect } from "react";
 import Header from "./components/Header";
 import GuitarLA from "./components/Guitar";
-import { db } from "./data/db";
+import { useCart } from "./hooks/useCart";
 
-function App() {
-  const initialCart = () => {
-    const localStorageCart = localStorage.getItem("cart");
-    return localStorageCart ? JSON.parse(localStorageCart) : [];
-  };
-  //state, UseState
-  const [data] = useState(db);
-  const [cart, setCart] = useState(initialCart);
-
-  useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(cart));
-  }, [cart]);
-
-  function addToCart(item) {
-    const itemExist = cart.some((cart) => cart.id === item.id);
-    if (!itemExist) {
-      item.quantity = 1;
-      setCart([...cart, item]);
-    } else {
-      const updateCarr = [...cart];
-      if (item.quantity === 5) return;
-      updateCarr.quantity = item.quantity++;
-      setCart(updateCarr);
-    }
-  }
-
-  function removeCart(id) {
-    setCart((item) => item.filter((item) => item.id !== id));
-  }
-
-  function changeQuantity(id, operation) {
-    const cartCopy = [...cart];
-    const operationType = operation === "+" ? true : false;
-
-    cartCopy.map((item) => {
-      if (item.id === id) {
-        if (item.quantity > 4 && operationType) return;
-        if (!operationType && item.quantity === 1) return;
-        return {
-          ...item,
-          quantity: operationType ? item.quantity++ : item.quantity--,
-        };
-      }
-      return item;
-    });
-    setCart(cartCopy);
-  }
+export default function App() {
+  const {
+    data,
+    cart,
+    addToCart,
+    removeCart,
+    changeQuantity,
+    setCart,
+    totalPay,
+  } = useCart();
 
   return (
     <>
@@ -58,6 +20,7 @@ function App() {
         removeCart={removeCart}
         changeQuantity={changeQuantity}
         setCart={setCart}
+        totalPay={totalPay}
       />
 
       <main className="container-xl mt-5">
@@ -89,5 +52,3 @@ function App() {
     </>
   );
 }
-
-export default App;

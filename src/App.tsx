@@ -1,34 +1,25 @@
+import { useEffect, useReducer } from "react";
 import Header from "./components/Header";
 import GuitarLA from "./components/Guitar";
-import { useCart } from "./hooks/useCart";
+import { cartReducer, initialState } from "./reducers/cart-reducer";
 
 export default function App() {
-  const {
-    data,
-    cart,
-    addToCart,
-    removeCart,
-    changeQuantity,
-    setCart,
-    totalPay,
-  } = useCart();
+  const [state, dispatch] = useReducer(cartReducer, initialState);
+
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(state.cart));
+  }, [state.cart]);
 
   return (
     <>
-      <Header
-        cart={cart}
-        removeCart={removeCart}
-        changeQuantity={changeQuantity}
-        setCart={setCart}
-        totalPay={totalPay}
-      />
+      <Header cart={state.cart} dispatch={dispatch} />
 
       <main className="container-xl mt-5">
         <h2 className="text-center">Nuestra Colección</h2>
 
         <div className="row mt-5">
-          {data.map((item) => (
-            <GuitarLA key={item.id} guitar={item} addToCart={addToCart} />
+          {state.data.map((item) => (
+            <GuitarLA key={item.id} guitar={item} dispatch={dispatch} />
           ))}
         </div>
       </main>

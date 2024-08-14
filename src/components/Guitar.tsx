@@ -1,11 +1,13 @@
+import { Dispatch } from "react";
 import { GuitarLa } from "../interface/guitarla";
+import { CartActions } from "../reducers/cart-reducer";
 
 interface GuitarProps {
   guitar: GuitarLa;
-  addToCart: (item: GuitarLa) => void;
+  dispatch: Dispatch<CartActions>;
 }
 
-export default function GuitarLA({ guitar, addToCart }: GuitarProps) {
+export default function GuitarLA({ guitar, dispatch }: GuitarProps) {
   const { name, image, description, price } = guitar;
 
   return (
@@ -22,7 +24,9 @@ export default function GuitarLA({ guitar, addToCart }: GuitarProps) {
         <p>{description}</p>
         <p className="fw-black text-primary fs-3">${price}</p>
         <button
-          onClick={() => addToCart(guitar)}
+          onClick={() =>
+            dispatch({ type: "add-to-cart", payload: { item: guitar } })
+          }
           type="button"
           className="btn btn-dark w-100"
         >

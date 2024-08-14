@@ -4,5 +4,8 @@ export interface GuitarLa {
   image: string;
   description: string;
   price: number;
-  quantity?: number;
+}
+
+export interface CartItem extends GuitarLa {
+  quantity: number;
 }

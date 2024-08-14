@@ -1,13 +1,11 @@
-import { Dispatch } from "react";
+import { useCarts } from "../hooks/useCarts";
 import { GuitarLa } from "../interface/guitarla";
-import { CartActions } from "../reducers/cart-reducer";
-
 interface GuitarProps {
   guitar: GuitarLa;
-  dispatch: Dispatch<CartActions>;
 }
 
-export default function GuitarLA({ guitar, dispatch }: GuitarProps) {
+export default function GuitarLA({ guitar }: GuitarProps) {
+  const { dispatch } = useCarts();
   const { name, image, description, price } = guitar;
 
   return (

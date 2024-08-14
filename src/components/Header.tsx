@@ -1,13 +1,9 @@
-import { Dispatch } from "react";
+import { useCarts } from "../hooks/useCarts";
 import { CartItem } from "../interface/guitarla";
-import { CartActions } from "../reducers/cart-reducer";
 
-interface headerProperties {
-  cart: CartItem[];
-  dispatch: Dispatch<CartActions>;
-}
-
-export default function Header({ cart, dispatch }: headerProperties) {
+export default function Header() {
+  const { state, dispatch } = useCarts();
+  const { cart } = state;
   const totalPays = () => {
     return cart.reduce(
       (acc: number, item: CartItem) => acc + item.price * (item.quantity ?? 0),
